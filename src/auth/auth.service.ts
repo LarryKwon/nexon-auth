@@ -113,6 +113,8 @@ export class AuthService {
       throw new ForbiddenException('Access Denied: No active refresh token.');
     }
 
+    console.log(user);
+    console.log(providedRefreshToken);
     const isValidRefreshToken = await bcrypt.compare(
       providedRefreshToken,
       user.currentHashedRefreshToken,
@@ -153,6 +155,7 @@ export class AuthService {
   }
 
   async validateUserForJwt(payload: any) {
+    console.log(payload);
     const user = await this.userModel.findById(payload.sub);
     if (!user || !user.isActive) {
       return null; // Or throw an exception

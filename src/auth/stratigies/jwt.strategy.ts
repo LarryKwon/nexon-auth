@@ -29,8 +29,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       throw new UnauthorizedException('Invalid token payload');
     }
 
-    const user = await this.authService.validateUserForJwt(payload.sub);
-
+    const user = await this.authService.validateUserForJwt(payload);
     if (!user) {
       throw new UnauthorizedException(
         'User not found, deactivated, or token invalid',

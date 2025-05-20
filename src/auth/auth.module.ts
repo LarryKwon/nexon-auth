@@ -6,6 +6,7 @@ import { User, UserSchema } from './schemas/user.schema';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtRefreshStrategy } from './stratigies/jwt-refresh.strategy.';
+import { JwtStrategy } from './stratigies/jwt.strategy';
 
 @Module({
   imports: [
@@ -14,6 +15,6 @@ import { JwtRefreshStrategy } from './stratigies/jwt-refresh.strategy.';
     JwtModule.register({}),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtRefreshStrategy],
+  providers: [AuthService, JwtStrategy, JwtRefreshStrategy],
 })
 export class AuthModule {}
